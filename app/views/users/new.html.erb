@@ -1,0 +1,32 @@
+<div class="row">
+  <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+  <%= form_for @user, url: { action: 'create' } do |f| %>
+      <div class="form-group">
+        <%= f.label :name  %>
+        <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password  %>
+        <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation  %>
+        <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Password' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email  %>
+        <%= f.email_field :email, class: 'form-control', placeholder: 'Email' %>
+      </div>
+      <%= f.submit "Create" %>
+  <% end %>
+</div>
