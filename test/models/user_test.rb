@@ -50,4 +50,13 @@ class UserTest < ActiveSupport::TestCase
     assert @user.save
     assert_not second_user.save
   end
+
+  test 'should ignore letter case for emails' do
+    second_user = @user.dup
+    @user.email = @user.email.upcase
+    assert @user.save
+
+    second_user.email = second_user.email.downcase
+    assert_not second_user.save
+  end
 end

@@ -1,0 +1,20 @@
+Roles:
+- guest
+- user
+- admin
+- tournament admin
+- captain
+
+Tournament:
+created_by
+    Guest: view
+    User: view, create
+    Admin: view, delete, hide
+    Tournament admin: create, edit (add result, remove and add teams), view, delete
+    Captain: add result, view
+
+Match:
+result, teams, date, completed, conflict, comments
+
+User panel:
+view tournaments, data panel
