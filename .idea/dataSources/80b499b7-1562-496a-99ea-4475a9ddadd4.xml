@@ -90,7 +90,7 @@
       <Position>2</Position>
       <DataType>varchar|0</DataType>
     </column>
-    <column id="27" parent="7" name="password_digestra">
+    <column id="27" parent="7" name="password_digest">
       <Position>3</Position>
       <DataType>varchar|0</DataType>
     </column>
