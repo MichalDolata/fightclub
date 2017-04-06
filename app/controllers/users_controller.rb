@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = 'Your account has been created'
       redirect_to root_path
-    elsif
+    else
       render 'new'
     end
   end

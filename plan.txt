@@ -18,3 +18,35 @@ result, teams, date, completed, conflict, comments
 
 User panel:
 view tournaments, data panel
+
+
+1. Team:
+- name
+- captain
+#- members
+- description
+
+2. Match:
+- teams ids
+- tournament id
+- result
+- date
+- status (closed, conflict)
+
+3. Tournament:
+- name
+- start date
+- description
+- no_of_teams
+- created_by
+- started?
+-------------------------------------------------------------------------------
+
+Tournament admin:
+- user_id
+- tournament_id
+
+Match comments:
+- user_id
+- match_id
+

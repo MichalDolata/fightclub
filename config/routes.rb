@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :teams
+
   get 'sessions/new'
 
   get 'signup', to: 'users#new'
