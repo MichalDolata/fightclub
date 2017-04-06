@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  start_date: 2017-04-06 15:23:41
+  teams_count: 16
+  creator: one
+  started: false
+
+two:
+  name: MyString
+  start_date: 2017-04-06 15:23:41
+  teams_count: 16
+  creator: two
+  started: false

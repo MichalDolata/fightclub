@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :tournaments do
+    post 'add_team', on: :member, to: 'tournaments#add_team'
+    post 'generate', on: :member, to: 'tournaments#generate'
+  end
+
   resources :teams
 
   get 'sessions/new'

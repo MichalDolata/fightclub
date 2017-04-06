@@ -8,7 +8,9 @@
       <introspection-schemas>*:main</introspection-schemas>
     </data-source>
     <data-source name="Rails fightclub: test" uuid="6902ef49-343f-4c81-9daa-02ea89362e4e">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <database-info product="SQLite" version="3.16.1" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" />
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <introspection-schemas>*:main</introspection-schemas>
     </data-source>
   </component>
 </project>

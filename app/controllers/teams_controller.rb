@@ -13,7 +13,7 @@ class TeamsController < ApplicationController
   def create
     @team = current_user.teams.new(team_params)
     if @team.save
-      flash[:notice] = 'Team has beed created'
+      flash[:notice] = 'Team has been created'
       redirect_to root_path
     else
       render 'new'

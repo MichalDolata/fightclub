@@ -1,0 +1,48 @@
+<%= render 'shared/flash_messages' %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tournament.name %>
+</p>
+
+<p>
+  <strong>Teams:</strong>
+  <%= "#{@tournament.teams.count} / #{@tournament.teams_count}" %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @tournament.start_date %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @tournament.creator.name %>
+</p>
+
+<p>
+  <strong>Started:</strong>
+  <%= @tournament.started %>
+</p>
+
+<p>
+  <strong>Teams:</strong>
+  <ul>
+  <% @tournament.teams.each do |team| %>
+    <li><%= team.name %></li>
+  <% end %>
+  </ul>
+</p>
+
+<% if logged_in? %>
+  <%= form_tag add_team_tournament_path(@tournament), method: 'post' do %>
+      <%= collection_select(:tournament, :team_ids, current_user.teams, :id, :name) %>
+      <%= submit_tag('Submit') %>
+  <% end %>
+<% end %>
+
+<% if tournament_admin? %>
+    <%= link_to 'Edit', edit_tournament_path(@tournament) %> |
+<% end %>
+
+<%= link_to 'Back', tournaments_path %>
