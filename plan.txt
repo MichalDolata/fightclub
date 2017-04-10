@@ -28,7 +28,9 @@ view tournaments, data panel
 
 2. Match:
 - teams ids
+-
 - tournament id
+- next_match
 - result
 - date
 - status (closed, conflict)

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  next_match: one
+  tournament: one
+  round_id: 1
+
+two:
+  next_match: two
+  tournament: two
+  round_id: 1

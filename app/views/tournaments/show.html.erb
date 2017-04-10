@@ -41,6 +41,10 @@
   <% end %>
 <% end %>
 
+<% if @tournament.generated %>
+    <%= render 'bracket' %>
+<% end %>
+
 <% if tournament_admin? %>
     <%= link_to 'Edit', edit_tournament_path(@tournament) %> |
 <% end %>

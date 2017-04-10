@@ -84,8 +84,45 @@ class TournamentsController < ApplicationController
 
   def generate
     teams = @tournament.teams.shuffle
-    #generate matches
-    #set genearted to true
+
+    @tournament.matches.clear
+
+    matches_count = @tournament.teams_count - 1
+    first_round_matches_count = @tournament.teams_count / 2
+    rounds = Math.log2(@tournament.teams_count).round
+    current_round = 0
+
+    matches = []
+
+    matches_count.times { matches << { } }
+    matches = @tournament.matches.build(matches)
+
+    first_round_matches_count.times do |i|
+      matches[i].update_attributes({ round_id: current_round, home: teams[i * 2], away: teams[i * 2 + 1],
+                                   next_match: matches[first_round_matches_count + i / 2]})
+    end
+
+
+    current_round = 1
+    match_id = first_round_matches_count * 1.5
+    id = first_round_matches_count
+    (rounds-1).downto(1) do |round|
+      for m in 0..Math.log2(round)
+        matches[id].update_attributes({ round_id: current_round, next_match: matches[match_id] })
+        id += 1
+        if m % 2 == 1
+          match_id +=1
+        end
+      end
+      current_round += 1
+    end
+
+    matches.each { |m| m.save }
+    @tournament.update(generated: true)
+
+    flash[:notice] = 'Bracket has been generated'
+    redirect_to @tournament
+
   end
 
   private
