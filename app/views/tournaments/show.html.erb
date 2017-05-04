@@ -1,52 +1,63 @@
-<%= render 'shared/flash_messages' %>
+<div class="row">
+  <%= render 'shared/flash_messages' %>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @tournament.name %>
-</p>
+<div class="row">
+  <div class="col-sm-6">
+    <ul class="list-group">
+      <li class="list-group-item active">
+        <strong>Name:</strong>
+        <%= @tournament.name %>
+      </li>
 
-<p>
-  <strong>Teams:</strong>
-  <%= "#{@tournament.teams.count} / #{@tournament.teams_count}" %>
-</p>
+      <li class="list-group-item">
+        <strong>Start date:</strong>
+        <%= @tournament.start_date %>
+      </li>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @tournament.start_date %>
-</p>
+      <li class="list-group-item">
+        <strong>Creator:</strong>
+        <%= @tournament.creator.name %>
+      </li>
 
-<p>
-  <strong>Creator:</strong>
-  <%= @tournament.creator.name %>
-</p>
-
-<p>
-  <strong>Started:</strong>
-  <%= @tournament.started %>
-</p>
-
-<p>
-  <strong>Teams:</strong>
-  <ul>
-  <% @tournament.teams.each do |team| %>
-    <li><%= team.name %></li>
+      <% if @tournament.finished? %>
+          <li class="list-group-item">
+            <strong>Winner:</strong>
+            <%= @tournament.winner.name %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-sm-6">
+      <ul class="list-group">
+        <li class="list-group-item active"><strong>Teams:</strong> <%= "#{@tournament.teams.count} / #{@tournament.teams_count}" %></li>
+      <% @tournament.teams.each do |team| %>
+        <li class="list-group-item"><%= team.name %></li>
+      <% end %>
+      </ul>
+  </div>
+</div>
+<div class="row">
+  <% if logged_in? and @tournament.signup_mode? %>
+      <h4>Add your team</h4>
+    <%= form_tag add_team_tournament_path(@tournament), method: 'post', class: 'form-inline' do %>
+        <%= collection_select(:tournament, :team_ids, current_user.teams, :id, :name, {}, { class: 'form-control' }) %>
+        <%= submit_tag('Submit', class: 'btn btn-primary') %>
+    <% end %>
   <% end %>
-  </ul>
-</p>
-
-<% if logged_in? %>
-  <%= form_tag add_team_tournament_path(@tournament), method: 'post' do %>
-      <%= collection_select(:tournament, :team_ids, current_user.teams, :id, :name) %>
-      <%= submit_tag('Submit') %>
+</div>
+<div class="row">
+  <br>
+  <% if !@tournament.signup_mode? %>
+      <%= render 'bracket', tournament: @tournament %>
   <% end %>
-<% end %>
 
-<% if @tournament.generated %>
-    <%= render 'bracket' %>
-<% end %>
+  <% if tournament_admin? %>
+      <%= link_to 'Edit', edit_tournament_path(@tournament), class: 'btn btn-default' %>
+  <% end %>
 
-<% if tournament_admin? %>
-    <%= link_to 'Edit', edit_tournament_path(@tournament) %> |
-<% end %>
-
-<%= link_to 'Back', tournaments_path %>
+  <% if @tournament.active? %>
+      <%= link_to 'Matches', tournament_matches_path(@tournament), class: 'btn btn-default' %>
+  <% end %>
+  <%= link_to 'Back', tournaments_path, class: 'btn btn-default' %>
+</div>

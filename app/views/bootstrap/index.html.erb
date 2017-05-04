@@ -1,3 +1,33 @@
 <%= render 'shared/flash_messages' %>
-<h1>Bootstrap#index</h1>
-<p>Find me in app/views/bootstrap/index.html.erb</p>
+<div class="row">
+  <div class="col-md-4">
+    <div class="list-group">
+      <a href="#" class="list-group-item active">
+        Sign-up mode
+      </a>
+      <% @tournaments.signup_mode.each do |tournament| %>
+        <%= render 'bootstrap/tournament', tournament: tournament %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="list-group">
+      <a href="#" class="list-group-item active">
+        Active
+      </a>
+      <% @tournaments.active.each do |tournament| %>
+          <%= render 'bootstrap/tournament', tournament: tournament %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="list-group">
+      <a href="#" class="list-group-item active">
+        Finished
+      </a>
+      <% @tournaments.finished.each do |tournament| %>
+          <%= render 'bootstrap/tournament', tournament: tournament %>
+      <% end %>
+    </div>
+  </div>
+</div>

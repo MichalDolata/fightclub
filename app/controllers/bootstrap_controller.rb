@@ -2,6 +2,7 @@ class BootstrapController < ApplicationController
   before_action :require_login, only: [:panel, :panel_edit]
 
   def index
+    @tournaments = Tournament.all
   end
 
   def bracket

@@ -1,34 +1,38 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <%= link_to new_tournament_path do %>
+      <button type="button" class="btn btn-primary">Create tournament</button>
+  <% end %>
+</div>
 
-<h1>Tournaments</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Start date</th>
-      <th>Teams</th>
-      <th>Creator</th>
-      <th>Started</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="row">
+  <p id="notice"><%= notice %></p>
 
-  <tbody>
-    <% @tournaments.each do |tournament| %>
+  <h1>Tournaments</h1>
+
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= tournament.name %></td>
-        <td><%= tournament.start_date %></td>
-        <td><%= tournament.creator.name %></td>
-        <td><%= tournament.started %></td>
-        <td><%= link_to 'Show', tournament %></td>
-        <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
-        <td><%= link_to 'Destroy', tournament, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Start date</th>
+        <th>Creator</th>
+        <th>Status</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<%= link_to 'New Tournament', new_tournament_path %>
+    <tbody>
+      <% @tournaments.each do |tournament| %>
+        <tr>
+          <td><%= tournament.name %></td>
+          <td><%= tournament.start_date %></td>
+          <td><%= tournament.creator.name %></td>
+          <td><%= tournament.status %></td>
+          <td><%= link_to 'Show', tournament %></td>
+          <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
+          <td><%= link_to 'Destroy', tournament, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

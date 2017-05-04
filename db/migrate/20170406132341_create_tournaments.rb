@@ -6,7 +6,7 @@ class CreateTournaments < ActiveRecord::Migration[5.0]
       t.text :description
       t.datetime :start_date
       t.belongs_to :creator
-      t.boolean :started, default: false
+      t.integer :status, default: 0
 
       t.timestamps
     end

@@ -1,10 +1,14 @@
-<h1>Editing Tournament</h1>
+<div class="row">
+  <h1>Editing Tournament</h1>
 
-<%= render 'form', tournament: @tournament %>
+  <%= render 'form', tournament: @tournament %>
 
-<%= form_tag generate_tournament_path(@tournament) do %>
-    <%= submit_tag 'Generate bracket' %>
-<% end %>
+  <br>
+  <%= form_tag generate_tournament_path(@tournament) do %>
+      <%= submit_tag 'Generate bracket', class: 'btn btn-success' %>
+  <% end %>
+  <br>
 
-<%= link_to 'Show', @tournament %> |
-<%= link_to 'Back', tournaments_path %>
+  <%= link_to 'Show', @tournament, class: 'btn btn-default' %>
+  <%= link_to 'Back', tournament_path(@tournament), class: 'btn btn-default' %>
+</div>

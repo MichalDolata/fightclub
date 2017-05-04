@@ -1,0 +1,29 @@
+<div class="row">
+  <% @tournament.rounds.times do |round| %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th colspan="3" class="text-center">Round <%= round + 1%></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @tournament.matches.select { |match| match.round_id == round }.each do |match| %>
+            <!-- tournament.matches.where(round_id: round).each -->
+          <% if match.free_seed? %>
+            <tr>
+              <td><%= match.home.name unless match.home.nil? %> vs Free seed (<%= match.status %>)</td>
+              <td><%= link_to 'Details', tournament_match_path(@tournament, match) %></td>
+              <td><%= link_to 'Edit', edit_tournament_match_path(@tournament, match) if tournament_admin? %></td>
+            </tr>
+          <% else %>
+            <tr>
+              <td><%= match.home.name unless match.home.nil? %> vs <%= match.away.name unless match.away.nil? %> (<%= match.status %>)</td>
+              <td><%= link_to 'Details', tournament_match_path(@tournament, match) %></td>
+              <td><%= link_to 'Edit', edit_tournament_match_path(@tournament, match) if tournament_admin? %></td>
+            </tr>
+          <% end %>
+        <% end %>
+        </tbody>
+      </table>
+  <% end %>
+</div>

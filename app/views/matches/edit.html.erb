@@ -1,0 +1,30 @@
+<%= render 'shared/flash_messages' %>
+
+<div class="jumbotron text-center">
+  <h1><%= @match.home.name unless @match.home.nil? %> vs <%= @match.away.name unless @match.away.nil? %></h1>
+  <p>Status: <%= @match.status %></p>
+</div>
+
+<% if @match.active? %>
+    <%= form_for [@tournament, @match], html: { class: 'form-inline' } do |f| %>
+        <%= f.label :home_score %>
+        <%= f.number_field :home_score, class: 'form-control' %>
+        <%= f.label :away_score %>
+        <%= f.number_field :away_score, class: 'form-control' %>
+
+        <%= f.submit class: 'btn btn-primary' %>
+    <% end %>
+
+    <br>
+    <%= form_for [@tournament, @match], url: { action: :close } do |f| %>
+        <%= f.submit value: 'Close match', class: 'btn btn-danger' %>
+    <% end %>
+    <br>
+
+    <div class="ul-group">
+      <li class="list-group-item active">Results: </li>
+      <% @match.results.each do |result| %>
+          <li class="list-group-item"><%= "#{result.captain.name} - #{result.home_score}:#{result.away_score}" %></li>
+      <% end %>
+    </div>
+<% end %>

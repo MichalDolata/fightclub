@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+
   resources :tournaments do
     post 'add_team', on: :member, to: 'tournaments#add_team'
     post 'generate', on: :member, to: 'tournaments#generate'
+    resources :matches, only: [:index, :show, :edit, :update] do
+      patch 'close', on: :member, to: 'matches#close'
+      post 'add_result', on: :member, to: 'results#create'
+    end
   end
 
   resources :teams

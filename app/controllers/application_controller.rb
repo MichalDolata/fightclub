@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+
+  def require_tournament_admin
+    redirect_to @tournament, flash: { danger: 'You must be admin to edit' } unless helpers.tournament_admin?
+  end
 end

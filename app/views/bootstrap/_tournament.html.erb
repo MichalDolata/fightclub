@@ -1,0 +1,13 @@
+<a href="<%= tournament_path(tournament) %>" class="list-group-item">
+  <% if tournament.signup_mode? %>
+    <span class="badge">
+      <%= "#{tournament.teams.size}/#{tournament.teams_count}" %>
+    </span>
+  <% end %>
+  <%= tournament.name %>
+  <% if tournament.finished? %>
+  <span class="pull-right h6" style="margin-top: 5px">
+    <%= "Winner: #{tournament.winner.name}" %>
+  </span>
+  <% end %>
+</a>

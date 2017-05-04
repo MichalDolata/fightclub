@@ -10,21 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170410115440) do
+ActiveRecord::Schema.define(version: 20170413064354) do
 
   create_table "matches", force: :cascade do |t|
     t.integer  "home_id"
     t.integer  "away_id"
+    t.integer  "home_score"
+    t.integer  "away_score"
     t.integer  "next_match_id"
+    t.integer  "next_match_type"
     t.integer  "tournament_id"
     t.integer  "round_id"
-    t.integer  "status"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "status",          default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["away_id"], name: "index_matches_on_away_id"
     t.index ["home_id"], name: "index_matches_on_home_id"
     t.index ["next_match_id"], name: "index_matches_on_next_match_id"
     t.index ["tournament_id"], name: "index_matches_on_tournament_id"
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.integer  "match_id"
+    t.integer  "user_id"
+    t.integer  "home_score"
+    t.integer  "away_score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_results_on_match_id"
+    t.index ["user_id"], name: "index_results_on_user_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -47,10 +61,9 @@ ActiveRecord::Schema.define(version: 20170410115440) do
     t.text     "description"
     t.datetime "start_date"
     t.integer  "creator_id"
-    t.boolean  "started",     default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.boolean  "generated",   default: false
+    t.integer  "status",      default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.index ["creator_id"], name: "index_tournaments_on_creator_id"
   end
 

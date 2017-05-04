@@ -19,7 +19,7 @@ class TournamentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create tournament" do
     assert_difference('Tournament.count') do
-      post tournaments_url, params: { tournament: { creator_id: @tournament.creator_id, name: @tournament.name, start_date: @tournament.start_date, started: @tournament.started, teams_count: @tournament.teams } }
+      post tournaments_url, params: { tournament: { creator_id: @tournament.creator_id, name: 'other name', start_date: @tournament.start_date, teams_count: @tournament.teams_count } }
     end
 
     assert_redirected_to tournament_url(Tournament.last)
@@ -36,8 +36,8 @@ class TournamentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update tournament" do
-    patch tournament_url(@tournament), params: { tournament: { creator_id: @tournament.creator_id, name: @tournament.name, start_date: @tournament.start_date, started: @tournament.started, teams_count: @tournament.teams } }
-    assert_redirected_to tournament_url(@tournament)
+    patch tournament_url(@tournament), params: { tournament: { creator_id: @tournament.creator_id, name: @tournament.name, start_date: @tournament.start_date, status: @tournament.status, teams_count: @tournament.teams_count } }
+    assert_redirected_to @tournament
   end
 
   test "should destroy tournament" do
