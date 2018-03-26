@@ -1,24 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+FightClub is tournament management system. 
+- It helps admins to run tournaments played in kick-off format. 
+- Teams can be sign up for tournaments by its captains.
+- Captains can enter result of matches what will help admin to close the match
+- Brackets are randomly seeded 
+- New matches are automatically generated 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[Online version](https://fightclub.dolata.me/)
